@@ -93,7 +93,18 @@ LRESULT CExamMFC001Dlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 	// TODO: Add your specialized code here and/or call the base class
 	if (message == WM_LBUTTONDOWN) {
 		CClientDC dc(this);
-		dc.Rectangle(10, 10, 100, 100);
+
+		int x = LOWORD(lParam);
+		int y = HIWORD(lParam);
+
+		if (wParam & MK_CONTROL)
+		{
+			dc.Ellipse(x - 10, y - 10, x + 10, y + 10);
+		}
+		else
+		{
+			dc.Rectangle(x - 10, y - 10, x + 10, y + 10);
+		}
 
 		
 		// Win32!
