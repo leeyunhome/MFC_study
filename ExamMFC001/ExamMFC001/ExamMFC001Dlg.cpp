@@ -31,6 +31,7 @@ void CExamMFC001Dlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CExamMFC001Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 
@@ -87,35 +88,54 @@ HCURSOR CExamMFC001Dlg::OnQueryDragIcon()
 }
 
 
+//
+//LRESULT CExamMFC001Dlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
+//{
+//	// TODO: Add your specialized code here and/or call the base class
+//	if (message == WM_LBUTTONDOWN) {
+//		CClientDC dc(this);
+//
+//		int x = LOWORD(lParam);
+//		int y = HIWORD(lParam);
+//
+//		if (wParam & MK_CONTROL)
+//		{
+//			dc.Ellipse(x - 10, y - 10, x + 10, y + 10);
+//		}
+//		else
+//		{
+//			dc.Rectangle(x - 10, y - 10, x + 10, y + 10);
+//		}
+//
+//		
+//		// Win32!
+//		//HDC h_dc = ::GetDC(m_hWnd);
+//		//Rectangle(h_dc, 10, 10, 100, 100);
+//		//::ReleaseDC(m_hWnd, h_dc);
+//
+//		// MFC 기본 코드
+//		//CDC *p_dc = GetDC();
+//		//p_dc->Rectangle(10, 10, 100, 100);
+//		//ReleaseDC(p_dc);
+//	}
+//	return CDialogEx::WindowProc(message, wParam, lParam);
+//}
 
-LRESULT CExamMFC001Dlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
+
+void CExamMFC001Dlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: Add your specialized code here and/or call the base class
-	if (message == WM_LBUTTONDOWN) {
-		CClientDC dc(this);
+	// TODO: Add your message handler code here and/or call default
 
-		int x = LOWORD(lParam);
-		int y = HIWORD(lParam);
-
-		if (wParam & MK_CONTROL)
-		{
-			dc.Ellipse(x - 10, y - 10, x + 10, y + 10);
-		}
-		else
-		{
-			dc.Rectangle(x - 10, y - 10, x + 10, y + 10);
-		}
-
-		
-		// Win32!
-		//HDC h_dc = ::GetDC(m_hWnd);
-		//Rectangle(h_dc, 10, 10, 100, 100);
-		//::ReleaseDC(m_hWnd, h_dc);
-
-		// MFC 기본 코드
-		//CDC *p_dc = GetDC();
-		//p_dc->Rectangle(10, 10, 100, 100);
-		//ReleaseDC(p_dc);
+	// point.x, point.y
+	CClientDC dc(this);
+	if (nFlags & MK_CONTROL)
+	{
+		dc.Ellipse(point.x - 30, point.y - 30, point.x + 30, point.y + 30);
 	}
-	return CDialogEx::WindowProc(message, wParam, lParam);
+	else
+	{
+		dc.Rectangle(point.x - 30, point.y - 30, point.x + 30, point.y + 30);
+	}
+
+	CDialogEx::OnLButtonDown(nFlags, point);
 }
