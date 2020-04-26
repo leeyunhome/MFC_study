@@ -91,7 +91,7 @@ HCURSOR CExamChat2Dlg::OnQueryDragIcon()
 
 void CExamChat2Dlg::OnBnClickedShowBtn()
 {
-	int num[11], i;
+	/*int num[11], i;
 	for (i = 0; i < 5; ++i)
 	{
 		num[i] = GetDlgItemInt(IDC_EDIT1 + i);
@@ -113,7 +113,15 @@ void CExamChat2Dlg::OnBnClickedShowBtn()
 		{
 			num[5 + i] = 0;
 		}
+	}*/
+
+	int num[11], i;
+	CString str, total_str;
+	for (i = 0; i < 11; ++i)
+	{
+		num[i] = GetDlgItemInt(IDC_EDIT1 + i);
 	}
+
 
 	for (i = 0; i < 11; ++i)
 	{
