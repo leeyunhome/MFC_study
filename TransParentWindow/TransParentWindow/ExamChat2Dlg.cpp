@@ -46,7 +46,8 @@ BOOL CExamChat2Dlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
-	SetLayeredWindowAttributes(RGB(255, 1, 7), 0, LWA_COLORKEY);
+	//SetLayeredWindowAttributes(0, 50, LWA_ALPHA);
+	//SetLayeredWindowAttributes(RGB(255, 1, 7), 0, LWA_COLORKEY);
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -92,8 +93,14 @@ HCURSOR CExamChat2Dlg::OnQueryDragIcon()
 
 void CExamChat2Dlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	CClientDC dc(this);
-	dc.FillSolidRect(point.x - 10, point.y - 10, 20, 20, RGB(255, 1, 7));
+	//CClientDC dc(this);
+	//dc.FillSolidRect(point.x - 10, point.y - 10, 20, 20, RGB(255, 1, 7));
+	int wnd_style = ::GetWindowLong(m_hWnd, GWL_EXSTYLE);
+	if (!(wnd_style & WS_EX_LAYERED))
+	{
+		::SetWindowLong(m_hWnd, GWL_EXSTYLE, wnd_style | WS_EX_LAYERED);
+	}
+	SetLayeredWindowAttributes(RGB(255, 1, 7), 0, LWA_COLORKEY);
 
 	CDialogEx::OnLButtonDown(nFlags, point);
 }
