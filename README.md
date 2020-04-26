@@ -1,6 +1,9 @@
 # MFC_study
 https://www.youtube.com/watch?v=_bGiFMEXwno&amp;list=PLiZvlxkcLhalUHK9UnRS_KweH9R3tgBIO&amp;index=3
 
+MFC 버튼 동적생성
+![mfc_button_dynamic_create](https://user-images.githubusercontent.com/59910227/80304199-6fbfdd80-87ef-11ea-9b27-be4989b55ad0.png)
+
 다이얼로그 띄우기  
 ![props](https://user-images.githubusercontent.com/59910227/80301786-1badfc80-87e1-11ea-8921-583b72383f17.png)
 
