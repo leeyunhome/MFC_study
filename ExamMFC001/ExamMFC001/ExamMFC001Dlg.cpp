@@ -19,6 +19,7 @@
 
 CExamMFC001Dlg::CExamMFC001Dlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_EXAMMFC001_DIALOG, pParent)
+	, m_editStr1(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -26,12 +27,14 @@ CExamMFC001Dlg::CExamMFC001Dlg(CWnd* pParent /*=nullptr*/)
 void CExamMFC001Dlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_INPUT_MSG_EDIT, m_editStr1);
 }
 
 BEGIN_MESSAGE_MAP(CExamMFC001Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_WM_LBUTTONDOWN()
+	ON_BN_CLICKED(IDC_SHOW_MSG_BTN, &CExamMFC001Dlg::OnBnClickedShowMsgBtn)
 END_MESSAGE_MAP()
 
 
@@ -138,4 +141,20 @@ void CExamMFC001Dlg::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 
 	CDialogEx::OnLButtonDown(nFlags, point);
+}
+
+// Button notify
+void CExamMFC001Dlg::OnBnClickedShowMsgBtn()
+{
+	// TODO: Add your control notification handler code here
+	//UpdateData(TRUE);
+	////GetDlgItemText(m_editStr1);
+	//AfxMessageBox(m_editStr1);
+
+	CString str, show_str;
+	//wchar_t str[64];
+	GetDlgItemText(IDC_INPUT_MSG_EDIT, str);
+	//show_str.Format(L"사용자가 입력한 문자열 : %s", str);
+	show_str = L"사용자가 입력한 문자열 : " + str;
+	AfxMessageBox(show_str);
 }
