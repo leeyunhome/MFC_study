@@ -34,6 +34,5 @@ public:
 	afx_msg void OnBnClickedReadBtn();
 	afx_msg void OnBnClickedWriteBtn();
 	//CString m_my_string;
-protected:
-	int m_my_value;
+
 };
