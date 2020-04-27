@@ -32,7 +32,9 @@ BEGIN_MESSAGE_MAP(CExamChat2Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_WM_DESTROY()
-	ON_WM_ERASEBKGND()
+//	ON_WM_ERASEBKGND()
+//ON_WM_CTLCOLOR()
+	ON_MESSAGE(WM_CTLCOLORDLG, OnCtrlColorDlg)
 END_MESSAGE_MAP()
 
 
@@ -47,7 +49,7 @@ BOOL CExamChat2Dlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
-	m_bk_brush.CreateSolidBrush(RGB(0, 200, 255));
+	m_bk_brush.CreateSolidBrush(RGB(0, 0, 0));
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -100,12 +102,36 @@ void CExamChat2Dlg::OnDestroy()
 }
 
 
-BOOL CExamChat2Dlg::OnEraseBkgnd(CDC* pDC)
-{
-	//BOOL flag = CDialogEx::OnEraseBkgnd(pDC);
-	CRect r;
-	GetClientRect(r);
-	pDC->FillRect(r, &m_bk_brush);
+//BOOL CExamChat2Dlg::OnEraseBkgnd(CDC* pDC)
+//{
+//	//BOOL flag = CDialogEx::OnEraseBkgnd(pDC);
+//	CRect r;
+//	GetClientRect(r);
+//	pDC->FillRect(r, &m_bk_brush);
+//
+//	return TRUE;
+//}
 
-	return TRUE;
+//
+//HBRUSH CExamChat2Dlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+//{
+//	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
+//
+//	if (nCtlColor == CTLCOLOR_DLG)
+//	{
+//		return m_bk_brush;
+//	}
+//	else if (nCtlColor == CTLCOLOR_STATIC)
+//	{
+//		//pDC->SetBkMode( TRANSPARENT );
+//		pDC->SetBkColor(RGB(255, 0, 0));
+//		pDC->SetTextColor(RGB(255, 255, 255));
+//		return (HBRUSH)::GetStockObject(NULL_BRUSH); // m_bk_brush;
+//	}
+//	return hbr;
+//}
+
+HRESULT CExamChat2Dlg::OnCtrlColorDlg(WPARAM wParam, LPARAM lParam)
+{
+	return (HRESULT)(HBRUSH)m_bk_brush;
 }

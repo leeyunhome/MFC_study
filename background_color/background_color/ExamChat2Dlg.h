@@ -35,5 +35,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnDestroy();
-	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+//	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	//afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	HRESULT OnCtrlColorDlg(WPARAM wParam, LPARAM lParam);
 };
