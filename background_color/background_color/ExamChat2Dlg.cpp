@@ -77,18 +77,9 @@ void CExamChat2Dlg::OnPaint()
 	}
 	else
 	{
-		CPaintDC dc(this);
 
-		CRect r;
-		GetClientRect(r);
-		//CBrush *p_old_brush = dc.SelectObject(&m_bk_brush);
-		//dc.Rectangle(r);
-		//dc.SelectObject(p_old_brush);
 
-		//dc.FillSolidRect(r, RGB(0, 200, 255));
-		dc.FillRect(r, &m_bk_brush);
-
-		//CDialogEx::OnPaint();
+		CDialogEx::OnPaint();
 	}
 }
 
@@ -111,7 +102,10 @@ void CExamChat2Dlg::OnDestroy()
 
 BOOL CExamChat2Dlg::OnEraseBkgnd(CDC* pDC)
 {
-	// TODO: Add your message handler code here and/or call default
+	//BOOL flag = CDialogEx::OnEraseBkgnd(pDC);
+	CRect r;
+	GetClientRect(r);
+	pDC->FillRect(r, &m_bk_brush);
 
-	return CDialogEx::OnEraseBkgnd(pDC);
+	return TRUE;
 }
