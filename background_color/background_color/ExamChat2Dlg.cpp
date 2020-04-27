@@ -31,6 +31,8 @@ void CExamChat2Dlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CExamChat2Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_WM_DESTROY()
+	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 
@@ -45,7 +47,7 @@ BOOL CExamChat2Dlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
-	// TODO: Add extra initialization here
+	m_bk_brush.CreateSolidBrush(RGB(0, 200, 255));
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -75,7 +77,18 @@ void CExamChat2Dlg::OnPaint()
 	}
 	else
 	{
-		CDialogEx::OnPaint();
+		CPaintDC dc(this);
+
+		CRect r;
+		GetClientRect(r);
+		//CBrush *p_old_brush = dc.SelectObject(&m_bk_brush);
+		//dc.Rectangle(r);
+		//dc.SelectObject(p_old_brush);
+
+		//dc.FillSolidRect(r, RGB(0, 200, 255));
+		dc.FillRect(r, &m_bk_brush);
+
+		//CDialogEx::OnPaint();
 	}
 }
 
@@ -86,3 +99,19 @@ HCURSOR CExamChat2Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CExamChat2Dlg::OnDestroy()
+{
+	CDialogEx::OnDestroy();
+
+	m_bk_brush.DeleteObject();
+}
+
+
+BOOL CExamChat2Dlg::OnEraseBkgnd(CDC* pDC)
+{
+	// TODO: Add your message handler code here and/or call default
+
+	return CDialogEx::OnEraseBkgnd(pDC);
+}

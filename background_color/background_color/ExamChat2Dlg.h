@@ -8,6 +8,9 @@
 // CExamChat2Dlg dialog
 class CExamChat2Dlg : public CDialogEx
 {
+private:
+	CBrush m_bk_brush;
+
 // Construction
 public:
 	CExamChat2Dlg(CWnd* pParent = nullptr);	// standard constructor
@@ -30,4 +33,7 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnDestroy();
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 };

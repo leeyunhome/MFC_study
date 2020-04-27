@@ -40,6 +40,8 @@ BOOL CExamChat2App::InitInstance()
 
 	CWinApp::InitInstance();
 
+	//SetDialogBkColor(RGB(0, 200, 255), RGB(0, 0, 128));
+	
 	CExamChat2Dlg dlg;
 	m_pMainWnd = &dlg;
 	dlg.DoModal();
